@@ -1,9 +1,3 @@
-Certainly! Since you've built a modular calculator with history management and parentheses support, a professional **README.md** should highlight these technical features.
-
-Here is a clean, structured README in English for your project:
-
----
-
 # My Calculator Project
 
 A robust command-line calculator built with Python. This project features a custom-built mathematical engine capable of handling operator precedence, nested parentheses, and calculation history.
