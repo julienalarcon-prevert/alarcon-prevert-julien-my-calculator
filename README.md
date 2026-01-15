@@ -63,7 +63,3 @@ Instead of using the dangerous `eval()` function, this project implements a **Le
 1. **Tokenization**: Input is cleaned and converted into a list.
 2. **Parentheses Solving**: The engine recursively finds the innermost parentheses and calculates them first.
 3. **Linear Reduction**: Using `apply_ope`, the engine reduces the token list based on the order of operations.
-
----
-
-### Would you like me to add a "License" or "Authors" section at the end of this file?
