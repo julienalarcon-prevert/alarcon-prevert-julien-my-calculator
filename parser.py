@@ -1,28 +1,23 @@
-def tokenizer (input_string):
-    input_string = input_string.replace("**", "^")
-    input_string = input_string.replace("//", "!")
-    input_string = input_string.replace(",", ".")
-    supporter_operators = "+-*/^!<>%()"
+def tokenizer(input_string):
+    input_string = input_string.replace("**", "^").replace("//", "!").replace(",", ".")
+    supported_operators = "+-*/^!<>%()"
     token_list = []
     current_number = ""
     
     for char in input_string:
         if char == " ":
             continue
-        if char.isdigit() or char == "." :
+        if char.isdigit() or char == ".":
             current_number += char
-        elif char in supporter_operators:
+        elif char in supported_operators:
             if current_number:
-                number_float = float(current_number)
-                token_list.append(number_float)
+                token_list.append(float(current_number))
                 current_number = ""
             token_list.append(char)
         else:
-            raise ValueError(f"Caractère non suppoté détecté : '{char}'")
+            raise ValueError(f"Unsupported character detected: '{char}'")
         
     if current_number:
-        number_float = float(current_number)
-        token_list.append(number_float)
+        token_list.append(float(current_number))
     
     return token_list
-    

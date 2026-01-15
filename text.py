@@ -4,13 +4,13 @@ larg = shutil.get_terminal_size().columns
 
 messages = {
     "accueil": "CALCULATOR",
-    "help": "Orders available : 'history', 'quit', 'help', 'delete' or your calculation directly",
-    "exit": "Exit program",
+    "help": "Available commands: 'history', 'quit', 'help', 'delete' or enter a calculation",
+    "exit": "Exiting program...",
     "empty": "ERROR: EMPTY OR UNRECOGNIZED CALCULATION",
     "incomplete": "ERROR: Your calculation is incomplete (it ends with an operator)",
-    "unk": "ERREUR UNKNOWN",
-    "save": "Calcul save in history",
-    "dlt": "History deleted succesfull",
-    "byzero": "Division by 0 is not allowed",
+    "unk": "UNKNOWN ERROR",
+    "save": "Calculation saved to history",
+    "dlt": "History deleted successfully",
+    "byzero": "Division by zero is not allowed",
     "entry": ">>>"
 }

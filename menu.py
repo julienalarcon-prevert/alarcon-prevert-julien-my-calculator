@@ -5,28 +5,28 @@ def display_header():
     print(text.messages["accueil"].center(text.larg))
     print(text.messages["help"].center(text.larg))
     
-def handle_calculation(entry, mon_historique):
-    try : 
-        list_tokens = parser.tokenizer(entry)
-        if not list_tokens:
+def handle_calculation(entry, history_file):
+    try: 
+        token_list = parser.tokenizer(entry)
+        if not token_list:
             print(text.messages["empty"].center(text.larg))
             return
-        result = engine.evaluate_expression(list_tokens)
+        result = engine.evaluate_expression(token_list)
         
         if result == int(result):
             result = int(result)
         
         clean_expr = " ".join(entry.split())
         print(f"{clean_expr} = {result}")
-        history.save_calculator(entry, result, mon_historique)
+        history.save_calculation(entry, result, history_file)
         
     except IndexError:
-        print("ERROR: Yous calculation is incomplete (it ends with an operator)")
+        print("ERROR: Your calculation is incomplete (it ends with an operator)")
     except Exception as error:
-        print(f"UNKNOWN ERROR : {error}")            
+        print(f"UNKNOWN ERROR: {error}")            
 
 def main_menu():
-    mon_historique = "calculs.txt"
+    history_file = "calculs.txt"
     display_header()
     
     while True:
@@ -40,13 +40,12 @@ def main_menu():
             
         elif command == "history":
             history.clean_terminal()
-            history.show_history(mon_historique)
-            input("\nAppuyez sur Entrée pour revenir au menu...")
+            history.show_history(history_file)
+            input("\nPress Enter to return to the menu...")
             display_header()
             
         elif command == "delete":
-            history.delete_history(mon_historique)
-            print("Historique supprimé.")
+            history.delete_history(history_file)
             display_header()
             
         elif command == "help":
@@ -56,4 +55,4 @@ def main_menu():
             continue
             
         else:
-            handle_calculation(entry, mon_historique)
+            handle_calculation(entry, history_file)
