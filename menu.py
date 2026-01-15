@@ -42,11 +42,12 @@ def main_menu():
             history.clean_terminal()
             history.show_history(mon_historique)
             input("\nAppuyez sur Entrée pour revenir au menu...")
-            display_header() # On réutilise la fonction pour clean et réafficher
+            display_header()
             
         elif command == "delete":
             history.delete_history(mon_historique)
             print("Historique supprimé.")
+            display_header()
             
         elif command == "help":
             print(text.messages["help"].center(text.larg))

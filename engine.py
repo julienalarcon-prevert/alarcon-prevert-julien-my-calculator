@@ -1,4 +1,4 @@
-import text
+import text, par
 
 def add (a, b): return float(a) + float(b)
 
@@ -26,6 +26,21 @@ def modulo(a, b):
     if b == 0 : raise ValueError(text.messages["byzero"].center(text.larg))
     return float(a%b)
 
+def calculate_no_parents(tokens):
+    apply_ope(tokens, {"^": puissance})
+    apply_ope(tokens, {
+              "*": multiply,
+              "/": divide,
+              "%": modulo,
+              "!": divide_entire
+    })
+    apply_ope(tokens, {"+": add, "-":subtract})
+    apply_ope(tokens, {
+        ">": max_min,
+        "<": lambda a, b: float(min(a, b))
+    })
+    return tokens[0]
+
 def apply_ope(liste_tokens, table_ope):
     i = 0
     while i < len(liste_tokens):
@@ -43,17 +58,7 @@ def apply_ope(liste_tokens, table_ope):
     return liste_tokens
 
 def evaluate_expression(liste_tokens):
-    apply_ope(liste_tokens, {"^": puissance})
-    apply_ope(liste_tokens, {
-              "*": multiply,
-              "/": divide,
-              "%": modulo,
-              "!": divide_entire
-    })
-    apply_ope(liste_tokens, {"+": add, "-":subtract})
-    apply_ope(liste_tokens, {
-        ">": max_min,
-        "<": lambda a, b: float(min(a, b))
-    })
+
+    tokens_ready = par.solve_parenthese(list(liste_tokens))
     
-    return liste_tokens[0]
+    return calculate_no_parents(tokens_ready)
