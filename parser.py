@@ -1,6 +1,6 @@
 def tokenizer(input_string):
     input_string = input_string.replace("**", "^").replace("//", "!").replace(",", ".")
-    supported_operators = "+-*/^!<>%()"
+    supported_operators = "+-*/^!<>%()v"
     token_list = []
     current_number = ""
     

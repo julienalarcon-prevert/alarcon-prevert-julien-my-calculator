@@ -1,5 +1,7 @@
 import text, par
 
+def square_root(a, b): return float(b)**0.5
+
 def add(a, b): return float(a) + float(b)
 
 def subtract(a, b): return float(a) - float(b)
@@ -27,6 +29,7 @@ def modulo(a, b):
     return float(a % b)
 
 def calculate_no_parentheses(tokens):
+    apply_operation(tokens, {"v": square_root})
     apply_operation(tokens, {"^": power})
     apply_operation(tokens, {
               "*": multiply,
