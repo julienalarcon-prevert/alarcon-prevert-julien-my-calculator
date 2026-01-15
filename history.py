@@ -1,6 +1,10 @@
-import os
+import os, text
 
 history_list = []
+
+def clean_terminal():
+    command = 'cls' if os.name == 'nt' else 'clear'
+    os.system(command)
 
 def save_calculator(expression_string, result_value, file_name):
     clean_expression = " ".join(expression_string.split())
@@ -11,20 +15,28 @@ def save_calculator(expression_string, result_value, file_name):
     entry = f"{clean_expression} = {result_value}"
     
     write_to_txt(entry, file_name)
-    print("Calcul save in history")
+    print(text.messages["save"].center(text.larg))
 
 
 def write_to_txt(line, file_name):
     with open(file_name, "a", encoding="utf-8") as f:
         f.write(line + "\n")
 
+def delete_history(file_path):
+    file_path = "calculs.txt"
+    try : 
+        os.remove(file_path)
+        print(text.messages["dlt"].center(text.larg))
+    except FileNotFoundError :
+        print(f"File '{file_path}' not found")
     
 
 def show_history(file_name):
     if os.path.exists(file_name):
-        print("HISTORIQUE COMPLET")
+        print("HISTORY".center(text.larg))
         with open(file_name, "r", encoding="utf-8") as f:
-            print(f.read())
+            for lignes in f:
+                print(lignes.strip().center(text.larg))
     else : 
-        print("Aucun historique trouvé")
+        print("History not found")
             
