@@ -13,7 +13,11 @@ def tokenizer(input_string):
             if current_number:
                 token_list.append(float(current_number))
                 current_number = ""
-            token_list.append(char)
+            
+            if char == "-" and len(token_list) == 0 or token_list[-1] == "(":
+                current_number = "-"
+            else :
+                token_list.append(char)
         else:
             raise ValueError(f"Unsupported character detected: '{char}'")
         

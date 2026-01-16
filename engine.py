@@ -49,12 +49,17 @@ def apply_operation(token_list, op_table):
     while i < len(token_list):
         token = token_list[i]
         if token in op_table:
-            left = token_list[i-1]
-            right = token_list[i+1]
             op_function = op_table[token]
             
-            result = op_function(left, right)
-            token_list[i-1 : i+2] = [result]
+            if token == "v":
+                right = token_list[i+1]
+                result = op_function(None, right)
+                token_list[i : i + 2] = [result]
+            else :
+                left = token_list[i-1]
+                right = token_list[i+1]
+                result = op_function(left, right)
+                token_list[i-1 : i+2] = [result]
             i = 0
         else:
             i += 1

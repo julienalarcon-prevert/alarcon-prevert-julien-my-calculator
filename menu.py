@@ -1,7 +1,7 @@
 import engine, history, parser, text, re
 
 def display_header(last_res=None):
-    history.clean_terminal()
+    
     print(text.messages["accueil"].center(text.larg))
     
     if last_res is None:
@@ -94,6 +94,7 @@ def main_menu():
             history.clean_terminal()
             history.show_history(history_file)
             input("\nPress Enter to return...")
+            history.clean_terminal()
             display_header(last_result)
         elif command == "delete":
             history.delete_history(history_file)
